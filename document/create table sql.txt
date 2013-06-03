@@ -1,0 +1,68 @@
+--
+CREATE TABLE `bm_team` (
+  `teamid` int(2) NOT NULL DEFAULT '0' COMMENT 'teamID',
+  `mc_zh` varchar(8) DEFAULT NULL COMMENT 'Chinese name',
+  `mc_en` varchar(12) DEFAULT NULL COMMENT 'English name',
+  PRIMARY KEY (`teamid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `game` (
+  `GAMEID` int(10) NOT NULL DEFAULT '0' COMMENT 'gameID',
+  `GUESTTEAM` int(2) DEFAULT NULL COMMENT 'guest team ID',
+  `HOSTTEAM` int(2) DEFAULT NULL COMMENT 'host team ID',
+  `GUESTSCORE` int(3) DEFAULT NULL COMMENT 'guest team scores',
+  `HOSTSCORE` int(3) DEFAULT NULL COMMENT 'host team scores',
+  `gametype` int(1) DEFAULT NULL COMMENT '1-preseason 2-regular season 3-playoffs',
+  PRIMARY KEY (`GAMEID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='game information';
+
+
+CREATE TABLE `players` (
+  `playerid` int(5) NOT NULL COMMENT 'player ID',
+  `name_ch` varchar(20) DEFAULT NULL COMMENT 'Chinese name',
+  `name_en` varchar(30) DEFAULT NULL COMMENT 'English name',
+  `team` int(2) DEFAULT NULL COMMENT 'team Id',
+  `number` int(2) DEFAULT NULL COMMENT 'number',
+  `position` varchar(10) DEFAULT NULL COMMENT 'position',
+  `weight` int(3) DEFAULT NULL COMMENT 'weight',
+  `height` float(3,2) DEFAULT NULL COMMENT 'height',
+  `grt_schl` varchar(50) DEFAULT NULL COMMENT 'graduate school',
+  `birthday` varchar(15) DEFAULT NULL COMMENT 'birthday',
+  `init_nba` int(4) DEFAULT NULL COMMENT 'the year begins in NBA',
+  `xxsw` varchar(100) DEFAULT '' COMMENT 'draft information',
+  PRIMARY KEY (`playerid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `quarter_score` (
+  `gameid` int(10) NOT NULL COMMENT 'gameid',
+  `ishost` tinyint(1) NOT NULL COMMENT 'is host?',
+  `quarter` int(1) NOT NULL COMMENT 'which quarter',
+  `score` int(2) DEFAULT NULL COMMENT 'score for one quarter',
+  PRIMARY KEY (`gameid`,`ishost`,`quarter`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `scores` (
+  `GAMEID` int(10) NOT NULL DEFAULT '0' COMMENT '',
+  `PLAYERID` int(5) NOT NULL DEFAULT '0' COMMENT '',
+  `NAME` varchar(20) DEFAULT NULL COMMENT '',
+  `MIN` int(2) DEFAULT NULL COMMENT '',
+  `FG` int(2) DEFAULT NULL COMMENT '',
+  `FG_MZ` int(2) DEFAULT NULL COMMENT '',
+  `FG3` int(2) DEFAULT NULL COMMENT '',
+  `FG3_MZ` int(2) DEFAULT NULL COMMENT '',
+  `FT` int(2) DEFAULT NULL COMMENT '',
+  `FT_MZ` int(2) DEFAULT NULL COMMENT '',
+  `OREB` int(2) DEFAULT NULL COMMENT '',
+  `DREB` int(2) DEFAULT NULL COMMENT '',
+  `REB` int(2) DEFAULT NULL COMMENT '',
+  `AST` int(2) DEFAULT NULL COMMENT '',
+  `STL` int(2) DEFAULT NULL COMMENT '',
+  `BLK` int(2) DEFAULT NULL COMMENT '',
+  `TO` int(2) DEFAULT NULL COMMENT '',
+  `PF` int(2) DEFAULT NULL COMMENT '',
+  `PST` int(3) DEFAULT NULL COMMENT '',
+  `ISSTART` tinyint(1) DEFAULT NULL COMMENT '',
+  `ISHOST` tinyint(1) DEFAULT NULL COMMENT '',
+  PRIMARY KEY (`GAMEID`,`PLAYERID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='';
